@@ -32,8 +32,10 @@ class BootReceiver : BroadcastReceiver() {
     companion object {
         private val componentName by lazy { ComponentName(app, BootReceiver::class.java) }
         var enabled: Boolean
-            get() = app.packageManager.getComponentEnabledSetting(componentName) ==
-                    PackageManager.COMPONENT_ENABLED_STATE_ENABLED
+            //app.packageManager.getComponentEnabledSetting在没有调用setComponentEnabledSetting设置的时候始终返回0
+            //在AndroidManifest中本广播的默认为：android:enabled="true"，因此default的时候为开关打开
+            get() = (app.packageManager.getComponentEnabledSetting(componentName) == PackageManager.COMPONENT_ENABLED_STATE_ENABLED ||
+                    app.packageManager.getComponentEnabledSetting(componentName) == PackageManager.COMPONENT_ENABLED_STATE_DEFAULT)
             set(value) = app.packageManager.setComponentEnabledSetting(componentName,
                     if (value) PackageManager.COMPONENT_ENABLED_STATE_ENABLED
                     else PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP)
