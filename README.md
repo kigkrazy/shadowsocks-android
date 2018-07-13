@@ -30,6 +30,9 @@ but probably painful. Further contributions regarding building on Windows are al
 * Clone the repo using `git clone --recurse-submodules <repo>` or update submodules using `git submodule update --init --recursive`
 * Build it using Android Studio or gradle script
 
+#### 编译错误以及解决方法
+[点击查看](.issues)
+
 ### TRANSLATE
 
 Translators can go to [POEditor](https://poeditor.com/join/project/u5VHO9vhSf) to help translate shadowsocks-android. Guidelines:
