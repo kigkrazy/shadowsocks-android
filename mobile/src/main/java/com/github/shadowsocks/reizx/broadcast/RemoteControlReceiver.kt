@@ -20,15 +20,38 @@ class RemoteControlReceiver : BroadcastReceiver() {
         }
     }
 
+    /**
+     * 设置代理信息
+     */
     fun doSetting(context: Context, intent: Intent){
         Log.d("RemoteControlReceiver", "doSetting.....")
     }
 
+    /**
+     * 启动
+     */
     fun doStart(context: Context, intent: Intent){
         Log.d("RemoteControlReceiver", "doSetting.....")
     }
 
+    /**
+     * 停止代理
+     */
     fun doStop(context: Context, intent: Intent){
+        Log.d("RemoteControlReceiver", "doSetting.....")
+    }
+
+    /**
+     * 删除代理
+     */
+    fun doDelete(context: Context, intent: Intent){
+        Log.d("RemoteControlReceiver", "doSetting.....")
+    }
+
+    /**
+     * 删除所有代理
+     */
+    fun doDeleteAll(context: Context, intent: Intent){
         Log.d("RemoteControlReceiver", "doSetting.....")
     }
 }
