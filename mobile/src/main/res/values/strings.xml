@@ -145,4 +145,10 @@
   <string name="plugin_unknown">Unknown plugin %s</string>
   <string name="plugin_untrusted">Warning: This plugin does not seem to come from a known trusted source.</string>
   <string name="profile_plugin">Plugin: %s</string>
+
+  <!--reizx-->
+  <!--几个远程控制的action名-->
+  <string name="remote_action_setting">android.intent.action.REMOTE_PROXY_ACTION_SETTING</string>
+  <string name="remote_action_start">android.intent.action.REMOTE_PROXY_ACTION_START</string>
+  <string name="remote_action_stop">android.intent.action.REMOTE_PROXY_ACTION_STOP</string>
 </resources>

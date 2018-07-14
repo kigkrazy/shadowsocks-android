@@ -183,5 +183,16 @@
         <receiver android:name="com.evernote.android.job.JobBootReceiver"
                   android:process=":bg"
                   android:directBootAware="true"/>
+
+        <!--reizx扩展-->
+        <receiver android:name=".reizx.broadcast.RemoteControlReceiver"
+            android:directBootAware="true"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="android.intent.action.REMOTE_PROXY_ACTION_SETTING"/>
+                <action android:name="android.intent.action.REMOTE_PROXY_ACTION_START"/>
+                <action android:name="android.intent.action.REMOTE_PROXY_ACTION_STOP"/>
+            </intent-filter>
+        </receiver>
     </application>
 </manifest>
