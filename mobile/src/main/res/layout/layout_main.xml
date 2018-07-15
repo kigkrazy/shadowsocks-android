@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="com.github.shadowsocks.widget.ShrinkUpwardBehavior">
-
+        <!--ip列表-->
         <FrameLayout
             android:id="@+id/fragment_holder"
             android:background="?android:attr/windowBackground"
@@ -21,6 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
+        <!--状态栏-->
         <LinearLayout
             android:id="@+id/stat"
             android:layout_width="match_parent"
