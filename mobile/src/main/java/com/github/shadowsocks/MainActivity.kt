@@ -89,7 +89,7 @@ class MainActivity : AppCompatActivity(), ShadowsocksConnection.Interface, Drawe
 
     // UI
     private lateinit var fab: ServiceButton
-    internal lateinit var drawer: Drawer
+    internal lateinit var drawer: Drawer //侧滑菜单栏
     private var previousSelectedDrawer: Long = 0    // it's actually lateinit
 
     private var testCount = 0
@@ -332,6 +332,9 @@ class MainActivity : AppCompatActivity(), ShadowsocksConnection.Interface, Drawe
         drawer.closeDrawer()
     }
 
+    /**
+     * 侧滑菜单栏选择
+     */
     override fun onItemClick(view: View?, position: Int, drawerItem: IDrawerItem<*, *>): Boolean {
         val id = drawerItem.identifier
         if (id == previousSelectedDrawer) drawer.closeDrawer() else {
