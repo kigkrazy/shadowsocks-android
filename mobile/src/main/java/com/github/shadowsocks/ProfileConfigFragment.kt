@@ -123,6 +123,9 @@ class ProfileConfigFragment : PreferenceFragmentCompatDividers(), Toolbar.OnMenu
         displayPreferenceDialog(PluginConfigurationDialogFragment(), Key.pluginConfigure, bundle)
     }
 
+    /**
+     * 手动新增/修改配置
+     */
     fun saveAndExit() {
         val profile = ProfileManager.getProfile(profileId) ?: Profile()
         profile.id = profileId
