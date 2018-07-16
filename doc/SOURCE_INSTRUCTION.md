@@ -29,5 +29,5 @@ class VpnService : BaseVpnService(), LocalDnsService.Interface {
 代码中的`BaseVpnService`表示的是`android.net.VpnService`并非源码代的`BaseVpnService`。
 ## 重要流程分析
 ### 启动服务流程
-
+`BaseService#buildShadowsocksConfig`创建服务端配置。
 ### 增加配置分析
