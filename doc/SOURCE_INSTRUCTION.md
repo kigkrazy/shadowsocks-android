@@ -15,6 +15,18 @@
 #### 函数说明
 
 
+### VpnService
+这是一个继承安卓VpnService的类，用于数据包的转发。
+
+#### 解惑
+```java
+...
+import android.net.VpnService as BaseVpnService
+
+class VpnService : BaseVpnService(), LocalDnsService.Interface {
+...
+```
+代码中的`BaseVpnService`表示的是`android.net.VpnService`并非源码代的`BaseVpnService`。
 ## 重要流程分析
 ### 启动服务流程
 
