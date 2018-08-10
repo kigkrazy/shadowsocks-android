@@ -3,9 +3,9 @@ package com.github.shadowsocks.reizx.broadcast
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import com.github.shadowsocks.App.Companion.app
 import com.github.shadowsocks.R
+import com.github.shadowsocks.reizx.util.RssLog
 
 /**
  * 远程控制广播
@@ -24,34 +24,34 @@ class RemoteControlReceiver : BroadcastReceiver() {
      * 设置代理信息
      */
     fun doSetting(context: Context, intent: Intent){
-        Log.d("RemoteControlReceiver", "doSetting.....")
+        RssLog.d("doSetting.....")
     }
 
     /**
      * 启动
      */
     fun doStart(context: Context, intent: Intent){
-        Log.d("RemoteControlReceiver", "doSetting.....")
+        RssLog.d("doStart.....")
     }
 
     /**
      * 停止代理
      */
     fun doStop(context: Context, intent: Intent){
-        Log.d("RemoteControlReceiver", "doSetting.....")
+        RssLog.d("doStop.....")
     }
 
     /**
      * 删除代理
      */
     fun doDelete(context: Context, intent: Intent){
-        Log.d("RemoteControlReceiver", "doSetting.....")
+        RssLog.d("doDelete.....")
     }
 
     /**
      * 删除所有代理
      */
     fun doDeleteAll(context: Context, intent: Intent){
-        Log.d("RemoteControlReceiver", "doSetting.....")
+        RssLog.d("doDeleteAll.....")
     }
 }
