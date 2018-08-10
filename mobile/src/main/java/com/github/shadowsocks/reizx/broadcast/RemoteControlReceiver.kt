@@ -14,8 +14,8 @@ class RemoteControlReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         when(intent.action){
             app.resources.getString(R.string.remote_action_setting) -> doSetting(context, intent)
-            app.resources.getString(R.string.remote_action_start) -> doSetting(context, intent)
-            app.resources.getString(R.string.remote_action_stop) -> doSetting(context, intent)
+            app.resources.getString(R.string.remote_action_start) -> doStart(context, intent)
+            app.resources.getString(R.string.remote_action_stop) -> doStop(context, intent)
             else -> {}
         }
     }
