@@ -1,0 +1,21 @@
+{
+    "bypass": false,
+    "date": "Aug 9, 2018 11:22:45 PM",
+    "dirty": false,
+    "host": "198.199.101.152",
+    "id": 2,
+    "individual": "",
+    "ipv6": true,
+    "method": "aes-256-cfb",
+    "name": "",
+    "password": "u1rRWTssNv0p",
+    "plugin": "",
+    "proxyApps": false,
+    "remoteDns": "8.8.8.8",
+    "remotePort": 8388,
+    "route": "all",
+    "rx": 0,
+    "tx": 0,
+    "udpdns": false,
+    "userOrder": 1
+}

@@ -130,7 +130,7 @@ class ProfileConfigFragment : PreferenceFragmentCompatDividers(), Toolbar.OnMenu
         val profile = ProfileManager.getProfile(profileId) ?: Profile()
         profile.id = profileId
         profile.deserialize()
-        ProfileManager.updateProfile(profile)
+        ProfileManager.updateProfile(profile) //保存属性
         ProfilesFragment.instance?.profilesAdapter?.deepRefreshId(profileId)
         if (DataStore.profileId == profileId && DataStore.directBootAware) DirectBoot.update()
         requireActivity().finish()
