@@ -71,7 +71,7 @@ public class RssLog {
      */
     public static void initLog(String tag, String logDir){
         Printer androidPrinter = new AndroidPrinter();                                      // 通过 android.util.Log 打印日志的打印器
-        AsfLog.HistoryDateFileNameGenerator fileNameGenerator = new AsfLog.HistoryDateFileNameGenerator(3, logDir);
+        RssLog.HistoryDateFileNameGenerator fileNameGenerator = new RssLog.HistoryDateFileNameGenerator(3, logDir);
         Printer filePrinter = new FilePrinter                                               // 打印日志到文件的打印器
                 .Builder(logDir)                                                            // 指定保存日志文件的路径
                 .fileNameGenerator(fileNameGenerator)                                       // 指定日志文件名生成器，默认为 ChangelessFileNameGenerator("log")
