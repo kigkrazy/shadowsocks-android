@@ -50,6 +50,7 @@ import com.github.shadowsocks.database.ProfileManager
 import com.github.shadowsocks.preference.BottomSheetPreferenceDialogFragment
 import com.github.shadowsocks.preference.DataStore
 import com.github.shadowsocks.preference.IconListPreference
+import com.github.shadowsocks.reizx.util.RssLog
 import com.github.shadowsocks.utils.*
 import com.google.android.gms.analytics.GoogleAnalytics
 import com.google.android.gms.analytics.HitBuilders
@@ -164,6 +165,8 @@ class App : Application() {
         }
 
         updateNotificationChannels()
+
+        RssLog.initLog("rss-tag")//初始化LOG
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
