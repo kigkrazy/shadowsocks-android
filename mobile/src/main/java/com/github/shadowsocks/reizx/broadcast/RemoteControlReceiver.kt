@@ -8,6 +8,7 @@ import com.github.shadowsocks.App.Companion.app
 import com.github.shadowsocks.R
 import com.github.shadowsocks.database.Profile
 import com.github.shadowsocks.database.ProfileManager
+import com.github.shadowsocks.reizx.constant.ReizxConstants
 import com.github.shadowsocks.reizx.util.RssLog
 import com.reizx.andrutil.GsonUtil
 
@@ -18,6 +19,9 @@ class RemoteControlReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         when (intent.action) {
             app.resources.getString(R.string.remote_action_add) -> doAdd(context, intent)
+            app.resources.getString(R.string.remote_action_switch) -> doSwitch(context, intent)
+            app.resources.getString(R.string.remote_action_del) -> doDelete(context, intent)
+            app.resources.getString(R.string.remote_action_del_all) -> doDeleteAll(context, intent)
             app.resources.getString(R.string.remote_action_start) -> doStart(context, intent)
             app.resources.getString(R.string.remote_action_stop) -> doStop(context, intent)
             else -> {
@@ -33,22 +37,19 @@ class RemoteControlReceiver : BroadcastReceiver() {
         RssLog.d("doAdd...")
         var profileString = ResourceUtils.readAssets2String("reizx/default_profile")
         val profile = GsonUtil.fromJsonString<Profile>(profileString, Profile::class.javaObjectType)
-        RssLog.d("the profile : %s".format(GsonUtil.toJsonString(profile)))
-        //PrivateDatabase.profileDao.update
-        //ProfileManager.createProfile(profile)
 
-        var profiles = ProfileManager.getAllProfiles()
-        for (profile in profiles!!) {
-            RssLog.d("the profile : %s".format(GsonUtil.toJsonString(profile)))
-        }
-
-        //app.startService()
-        app.switchProfile(2)
+        profile.host = intent.getStringExtra(ReizxConstants.PROXY_HOST)
+        profile.remotePort = intent.getIntExtra(ReizxConstants.PROXY_PORT, 8388)
+        profile.method = intent.getStringExtra(ReizxConstants.PROXY_METHOD)
+        ProfileManager.updateProfile(profile)
+        RssLog.d("add the profile : %s".format(GsonUtil.toJsonString(profile)))
     }
 
     fun doSwitch(context: Context, intent: Intent) {
         RssLog.d("doSwitch...")
-
+        var profileId = intent.getIntExtra(ReizxConstants.PROFILE_ID, -1)
+        RssLog.d("set switch : %d".format(profileId))
+        app.switchProfile(profileId)
     }
 
     /**
@@ -56,6 +57,7 @@ class RemoteControlReceiver : BroadcastReceiver() {
      */
     fun doStart(context: Context, intent: Intent) {
         RssLog.d("doStart...")
+        app.startService()
     }
 
     /**
@@ -63,6 +65,7 @@ class RemoteControlReceiver : BroadcastReceiver() {
      */
     fun doStop(context: Context, intent: Intent) {
         RssLog.d("doStop...")
+        app.stopService()
     }
 
     /**
@@ -70,6 +73,9 @@ class RemoteControlReceiver : BroadcastReceiver() {
      */
     fun doDelete(context: Context, intent: Intent) {
         RssLog.d("doDelete...")
+        var profileId = intent.getIntExtra(ReizxConstants.PROFILE_ID, -1)
+        ProfileManager.delProfile(profileId)
+        RssLog.d("delete switch : %d".format(profileId))
     }
 
     /**
@@ -77,5 +83,9 @@ class RemoteControlReceiver : BroadcastReceiver() {
      */
     fun doDeleteAll(context: Context, intent: Intent) {
         RssLog.d("doDeleteAll...")
+        var profiles = ProfileManager.getAllProfiles()
+        for (profile in profiles!!) {
+            ProfileManager.delProfile(profile.id)
+        }
     }
 }

@@ -149,6 +149,8 @@
     <!--reizx-->
     <!--几个远程控制的action名-->
     <string name="remote_action_add">android.intent.action.REMOTE_PROXY_ACTION_ADD</string>
+    <string name="remote_action_del">android.intent.action.REMOTE_PROXY_ACTION_DEL</string>
+    <string name="remote_action_del_all">android.intent.action.REMOTE_PROXY_ACTION_DEL_ALL</string>
     <string name="remote_action_switch">android.intent.action.REMOTE_PROXY_ACTION_SWITCH</string>
     <string name="remote_action_start">android.intent.action.REMOTE_PROXY_ACTION_START</string>
     <string name="remote_action_stop">android.intent.action.REMOTE_PROXY_ACTION_STOP</string>
