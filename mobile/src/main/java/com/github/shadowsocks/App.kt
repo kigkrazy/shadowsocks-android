@@ -93,6 +93,9 @@ class App : Application() {
     val currentProfile: Profile? get() =
         if (DataStore.directBootAware) DirectBoot.getDeviceProfile() else ProfileManager.getProfile(DataStore.profileId)
 
+    /**
+     * 设置选中
+     */
     fun switchProfile(id: Int): Profile {
         val result = ProfileManager.getProfile(id) ?: ProfileManager.createProfile()
         DataStore.profileId = result.id

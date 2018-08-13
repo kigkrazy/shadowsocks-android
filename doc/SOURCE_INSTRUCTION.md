@@ -6,6 +6,15 @@
 ### ProfileConfigActivity & ProfileConfigFragment
 这两个界面组成`配置文件设置`界面，即用来修改服务器配置的界面。
 
+### com.github.shadowsocks.database.ProfileManager
+配置管理类，用于配置的添加删除等操作。
+
+### com.github.shadowsocks.App
+* `switchProfile`选择配置
+* `startService`启动服务 
+* `stopService`停止服务 
+
+
 #### 函数说明
 * ProfileConfigFragment#saveAndExit  保存配置
 

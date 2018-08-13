@@ -6,9 +6,9 @@ import android.content.Intent
 import com.blankj.utilcode.util.ResourceUtils
 import com.github.shadowsocks.App.Companion.app
 import com.github.shadowsocks.R
-import com.github.shadowsocks.database.PrivateDatabase
 import com.github.shadowsocks.database.Profile
 import com.github.shadowsocks.database.ProfileManager
+import com.github.shadowsocks.preference.DataStore
 import com.github.shadowsocks.reizx.util.RssLog
 import com.reizx.andrutil.GsonUtil
 
@@ -36,7 +36,15 @@ class RemoteControlReceiver : BroadcastReceiver() {
         val profile = GsonUtil.fromJsonString<Profile>(profileString, Profile::class.javaObjectType)
         RssLog.d("the profile : %s".format(GsonUtil.toJsonString(profile)))
         //PrivateDatabase.profileDao.update
-        ProfileManager.createProfile(profile)
+        //ProfileManager.createProfile(profile)
+
+        var profiles = ProfileManager.getAllProfiles()
+        for (profile  in profiles!!){
+            RssLog.d("the profile : %s".format(GsonUtil.toJsonString(profile)))
+        }
+
+        //app.startService()
+        app.switchProfile(2)
     }
 
     /**
