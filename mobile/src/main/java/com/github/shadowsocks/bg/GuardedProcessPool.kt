@@ -26,6 +26,7 @@ import android.util.Log
 import com.github.shadowsocks.App.Companion.app
 import com.github.shadowsocks.BuildConfig
 import com.github.shadowsocks.JniHelper
+import com.github.shadowsocks.reizx.util.RssLog
 import com.github.shadowsocks.utils.Commandline
 import com.github.shadowsocks.utils.thread
 import java.io.File
@@ -76,8 +77,8 @@ class GuardedProcessPool {
                     if (callback == null) callback = onRestartCallback else callback()
 
                     pushException(null)
+                    //todo 此处可以做一些发广播的处理，用于通知别的程序代理启动完成
                     process.waitFor()
-
                     synchronized(this) {
                         if (SystemClock.elapsedRealtime() - startTime < 1000) {
                             Log.w(TAG, "process exit too fast, stop guard: $cmdName")
@@ -86,8 +87,10 @@ class GuardedProcessPool {
                     }
                 }
             } catch (_: InterruptedException) {
+                //todo 此处可以做一些发广播的处理，用于通知别的程序代理启动失败
                 if (BuildConfig.DEBUG) Log.d(TAG, "thread interrupt, destroy process: $cmdName")
             } catch (e: IOException) {
+                //todo 此处可以做一些发广播的处理，用于通知别的程序代理启动失败
                 pushException(e)
             } finally {
                 if (process != null) {
