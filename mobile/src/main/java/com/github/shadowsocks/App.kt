@@ -87,8 +87,8 @@ class App : Application() {
         val intent = Intent(this, BaseService.serviceClass.java)
         if (Build.VERSION.SDK_INT >= 26) startForegroundService(intent) else startService(intent)
     }
-    fun reloadService() = sendBroadcast(Intent(Action.RELOAD))
-    fun stopService() = sendBroadcast(Intent(Action.CLOSE))
+    fun reloadService() = sendBroadcast(Intent(Action.RELOAD))//重新加载服务
+    fun stopService() = sendBroadcast(Intent(Action.CLOSE))//关闭代理服务
 
     val currentProfile: Profile? get() =
         if (DataStore.directBootAware) DirectBoot.getDeviceProfile() else ProfileManager.getProfile(DataStore.profileId)
