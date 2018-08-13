@@ -88,7 +88,7 @@ class MainActivity : AppCompatActivity(), ShadowsocksConnection.Interface, Drawe
     }
 
     // UI
-    private lateinit var fab: ServiceButton
+    private lateinit var fab: ServiceButton //开始代理的按钮
     internal lateinit var drawer: Drawer //侧滑菜单栏
     private var previousSelectedDrawer: Long = 0    // it's actually lateinit
 
