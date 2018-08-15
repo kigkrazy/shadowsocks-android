@@ -33,12 +33,15 @@ class RemoteControlReceiver : BroadcastReceiver() {
      */
     fun doAdd(context: Context, intent: Intent) {
         RssLog.d("doAdd...")
+
         deleteExistConfig(intent.getStringExtra(ReizxConstants.PROXY_HOST))//删除已经存在的IP
         var profileString = ResourceUtils.readAssets2String("reizx/default_profile")
         val profile = GsonUtil.fromJsonString<Profile>(profileString, Profile::class.javaObjectType)
         profile.host = intent.getStringExtra(ReizxConstants.PROXY_HOST)
         profile.remotePort = intent.getIntExtra(ReizxConstants.PROXY_PORT, 8388)
-        profile.method = intent.getStringExtra(ReizxConstants.PROXY_METHOD)
+        profile.method = intent.getStringExtra(ReizxConstants.PROXY_METHOD) ?: "aes-256-cfb"
+        profile.individual = intent.getStringExtra(ReizxConstants.PROXY_INDIVIDUAL) ?: ""
+        RssLog.d("add the config host : ${profile.host}, port : ${profile.remotePort}, method : ${profile.method}, individual : ${profile.individual}")
         deleteExistConfig(profile.host)//删除多余的配置
         ProfileManager.updateProfile(profile)
         RssLog.d("add the profile : %s".format(GsonUtil.toJsonString(profile)))
