@@ -40,3 +40,30 @@ class VpnService : BaseVpnService(), LocalDnsService.Interface {
 ### 启动服务流程
 `BaseService#buildShadowsocksConfig`创建服务端配置文件。
 ### 增加配置分析
+
+## `Profile`配置说明
+### 例子
+```json
+{
+    "bypass": true,
+    "proxyApps": true,
+    "individual": "com.reizx.ares.faker\ncom.reizx.ares.mgr\n",
+    "date": "Aug 9, 2018 11:22:45 PM",
+    "dirty": false,
+    "host": "198.199.101.152",
+    "ipv6": true,
+    "method": "aes-256-cfb",
+    "name": "",
+    "password": "u1rRWTssNv0p",
+    "plugin": "",
+    "remoteDns": "8.8.8.8",
+    "remotePort": 8388,
+    "route": "bypass-lan",
+    "rx": 0,
+    "tx": 0,
+    "udpdns": false,
+    "userOrder": 1
+}
+```
+### 绕行APP模式
+当`bypass`,`proxyApps`,都为`true`的时候`individual`中的包请求不经过代理。
