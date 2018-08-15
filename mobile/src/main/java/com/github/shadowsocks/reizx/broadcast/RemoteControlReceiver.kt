@@ -16,17 +16,15 @@ import com.reizx.andrutil.GsonUtil
  * 远程控制广播
  */
 class RemoteControlReceiver : BroadcastReceiver() {
-    override fun onReceive(context: Context, intent: Intent) {
-        when (intent.action) {
-            app.resources.getString(R.string.remote_action_add) -> doAdd(context, intent)
-            app.resources.getString(R.string.remote_action_switch) -> doSwitch(context, intent)
-            app.resources.getString(R.string.remote_action_del) -> doDelete(context, intent)
-            app.resources.getString(R.string.remote_action_del_all) -> doDeleteAll(context, intent)
-            app.resources.getString(R.string.remote_action_start) -> doStart(context, intent)
-            app.resources.getString(R.string.remote_action_stop) -> doStop(context, intent)
-            else -> {
-                RssLog.d("unknow action...")
-            }
+    override fun onReceive(context: Context, intent: Intent) = when (intent.action) {
+        app.resources.getString(R.string.remote_action_add) -> doAdd(context, intent)
+        app.resources.getString(R.string.remote_action_switch) -> doSwitch(context, intent)
+        app.resources.getString(R.string.remote_action_del) -> doDelete(context, intent)
+        app.resources.getString(R.string.remote_action_del_all) -> doDeleteAll(context, intent)
+        app.resources.getString(R.string.remote_action_start) -> doStart(context, intent)
+        app.resources.getString(R.string.remote_action_stop) -> doStop(context, intent)
+        else -> {
+            RssLog.d("unknow action...")
         }
     }
 
