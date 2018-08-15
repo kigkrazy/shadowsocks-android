@@ -44,7 +44,7 @@ class RemoteControlReceiver : BroadcastReceiver() {
         RssLog.d("add the config host : ${profile.host}, port : ${profile.remotePort}, method : ${profile.method}, individual : ${profile.individual}")
         deleteExistConfig(profile.host)//删除多余的配置
         ProfileManager.updateProfile(profile)
-        RssLog.d("add the profile : %s".format(GsonUtil.toJsonString(profile)))
+        RssLog.d("add the profile : ${GsonUtil.toJsonString(profile)}")
     }
 
     fun doSwitch(context: Context, intent: Intent) {
