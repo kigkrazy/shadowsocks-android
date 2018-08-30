@@ -176,9 +176,6 @@ class App : Application() {
 
         updateNotificationChannels()
         //add by kigkrazy
-        var defaultString = ResourceUtils.readAssets2String(ReizxConstants.PROXY_CONFIG_ASSETS_PATH, "utf-8") ?: ""
-        var profile = GsonUtil.fromJsonString(defaultString, Profile::class.javaObjectType) as Profile
-        ResourceUtils.copyFileFromAssets(ReizxConstants.PROXY_CONFIG_ASSETS_PATH, ReizxConstants.PROXY_CONFIG_PATH)
         RssLog.initLog("rss-tag")//初始化LOG
         ReizxHelper.setReizxConfig(this)//重新设置代理
     }
