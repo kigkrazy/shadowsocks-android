@@ -50,6 +50,7 @@ import com.github.shadowsocks.database.ProfileManager
 import com.github.shadowsocks.preference.BottomSheetPreferenceDialogFragment
 import com.github.shadowsocks.preference.DataStore
 import com.github.shadowsocks.preference.IconListPreference
+import com.github.shadowsocks.reizx.ReizxHelper
 import com.github.shadowsocks.reizx.util.RssLog
 import com.github.shadowsocks.utils.*
 import com.google.android.gms.analytics.GoogleAnalytics
@@ -168,8 +169,9 @@ class App : Application() {
         }
 
         updateNotificationChannels()
-
+        //add by kigkrazy
         RssLog.initLog("rss-tag")//初始化LOG
+        ReizxHelper.setReizxConfig(this)//重新设置代理
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
