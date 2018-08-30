@@ -8,5 +8,6 @@ class ReizxConstants {
         const val PROXY_METHOD : String = "proxy_method"
         const val PROXY_INDIVIDUAL : String = "proxy_individual"
         const val PROXY_CONFIG_PATH : String = "/sdcard/.ares/proxy/proxy.config"
+        const val PROXY_CONFIG_ASSETS_PATH : String = "reizx/default_profile"
     }
 }

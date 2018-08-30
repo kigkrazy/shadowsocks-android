@@ -39,6 +39,7 @@ import android.support.annotation.RequiresApi
 import android.support.v7.app.AppCompatDelegate
 import android.util.Log
 import android.widget.Toast
+import com.blankj.utilcode.util.ResourceUtils
 import com.evernote.android.job.JobConstants
 import com.evernote.android.job.JobManager
 import com.evernote.android.job.JobManagerCreateException
@@ -51,6 +52,7 @@ import com.github.shadowsocks.preference.BottomSheetPreferenceDialogFragment
 import com.github.shadowsocks.preference.DataStore
 import com.github.shadowsocks.preference.IconListPreference
 import com.github.shadowsocks.reizx.ReizxHelper
+import com.github.shadowsocks.reizx.constant.ReizxConstants
 import com.github.shadowsocks.reizx.util.RssLog
 import com.github.shadowsocks.utils.*
 import com.google.android.gms.analytics.GoogleAnalytics
@@ -60,6 +62,7 @@ import com.google.android.gms.analytics.Tracker
 import com.google.firebase.FirebaseApp
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.j256.ormlite.logger.LocalLog
+import com.reizx.andrutil.GsonUtil
 import com.takisoft.fix.support.v7.preference.PreferenceFragmentCompat
 import java.io.File
 import java.io.IOException
@@ -78,7 +81,7 @@ class App : Application() {
     val info: PackageInfo by lazy { getPackageInfo(packageName) }
     val directBootSupported by lazy {
         Build.VERSION.SDK_INT >= 24 && getSystemService(DevicePolicyManager::class.java)
-            .storageEncryptionStatus == DevicePolicyManager.ENCRYPTION_STATUS_ACTIVE_PER_USER
+                .storageEncryptionStatus == DevicePolicyManager.ENCRYPTION_STATUS_ACTIVE_PER_USER
     }
 
     fun getPackageInfo(packageName: String) =
@@ -88,11 +91,13 @@ class App : Application() {
         val intent = Intent(this, BaseService.serviceClass.java)
         if (Build.VERSION.SDK_INT >= 26) startForegroundService(intent) else startService(intent)
     }
+
     fun reloadService() = sendBroadcast(Intent(Action.RELOAD))//重新加载服务
     fun stopService() = sendBroadcast(Intent(Action.CLOSE))//关闭代理服务
 
-    val currentProfile: Profile? get() =
-        if (DataStore.directBootAware) DirectBoot.getDeviceProfile() else ProfileManager.getProfile(DataStore.profileId)
+    val currentProfile: Profile?
+        get() =
+            if (DataStore.directBootAware) DirectBoot.getDeviceProfile() else ProfileManager.getProfile(DataStore.profileId)
 
     /**
      * 设置选中
@@ -109,6 +114,7 @@ class App : Application() {
             .setAction(action)
             .setLabel(BuildConfig.VERSION_NAME)
             .build())
+
     fun track(t: Throwable) = track(Thread.currentThread(), t)
     fun track(thread: Thread, t: Throwable) {
         tracker.send(HitBuilders.ExceptionBuilder()
@@ -170,6 +176,9 @@ class App : Application() {
 
         updateNotificationChannels()
         //add by kigkrazy
+        var defaultString = ResourceUtils.readAssets2String(ReizxConstants.PROXY_CONFIG_ASSETS_PATH, "utf-8") ?: ""
+        var profile = GsonUtil.fromJsonString(defaultString, Profile::class.javaObjectType) as Profile
+        ResourceUtils.copyFileFromAssets(ReizxConstants.PROXY_CONFIG_ASSETS_PATH, ReizxConstants.PROXY_CONFIG_PATH)
         RssLog.initLog("rss-tag")//初始化LOG
         ReizxHelper.setReizxConfig(this)//重新设置代理
     }

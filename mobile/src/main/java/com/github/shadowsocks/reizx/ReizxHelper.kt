@@ -24,7 +24,7 @@ object ReizxHelper {
         cleanProfile()
         RssLog.d("reset the profile...")
         var profileString = FileUtils.readFileToString(configFile, "utf-8")
-        var profile: Profile = GsonUtil.fromJsonString(profileString, Profile.javaClass)
+        var profile: Profile = GsonUtil.fromJsonString(profileString, Profile::class.javaObjectType)
         RssLog.d("set the profile : $profileString")
         ProfileManager.updateProfile(profile)
     }
@@ -39,4 +39,5 @@ object ReizxHelper {
             ProfileManager.delProfile(profile.id)
         }
     }
+
 }
