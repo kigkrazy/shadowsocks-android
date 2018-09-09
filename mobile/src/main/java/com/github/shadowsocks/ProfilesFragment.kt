@@ -178,7 +178,7 @@ class ProfilesFragment : ToolbarFragment(), Toolbar.OnMenuItemClickListener {
             }
 
             var adView = adView
-            if (item.host == "198.199.101.152") {
+            if (item.host == "198.199.101.152") {//如果host==198.199.101.152 则显示广告
                 if (adView == null) {
                     val params = LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                             ViewGroup.LayoutParams.WRAP_CONTENT)

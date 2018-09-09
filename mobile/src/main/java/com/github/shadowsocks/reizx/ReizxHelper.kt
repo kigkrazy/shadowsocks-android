@@ -26,7 +26,7 @@ object ReizxHelper {
             RssLog.d("clear profile")
             cleanProfile()
             RssLog.d("set the profile : $profileString")
-            ProfileManager.updateProfile(profile)
+            ProfileManager.createProfile(profile)
         }catch (e: Exception){
             RssLog.e("init reizx config error : $e")
         }
